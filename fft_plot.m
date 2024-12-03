@@ -1,5 +1,12 @@
+% function fmax = fft_plot(x,fs,ax)
+% to calculate, center and plot fft analysis of a signal
+% input: x - signal to analyze
+%        fs - sampling frequency
+%        ax - handle to the axes to plot on
+% output: fmax - peak frequencies
+%         hp - handle of the plot line
 
-function fmax = fft_plot(x,fs,ax)
+function [fmax, hp] = fft_plot(x,fs,ax)
 
 n = length(x);
 fshift = (-n/2:n/2-1)*(fs/n);
@@ -8,7 +15,7 @@ y = fft(x);
 yshift = fftshift(y);
 power = abs(yshift).^2/n; 
 
-plot(ax, fshift,power)
+hp = plot(ax, fshift, power);
 hold on
 xlabel('Frequency (Hz)')
 ylabel('Power')
